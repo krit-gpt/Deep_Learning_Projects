@@ -72,6 +72,8 @@ classifier.fit(X_train, y_train, batch_size = 10, epochs = 100)
 y_pred = classifier.predict(X_test)
 y_pred = (y_pred > 0.5)
 
+
+#///////////////////////////////////////////////PREDICTING A SINGLE NEW OBSERVATION///////////////////////////////////////////////
 # Predicting a single new observation
 """Predict if the customer with the following informations will leave the bank:
 Geography: France
@@ -85,6 +87,13 @@ Has Credit Card: Yes
 Is Active Member: Yes
 Estimated Salary: 50000"""
 new_prediction = classifier.predict(sc.transform(np.array([[0.0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]])))
+# Need to put the information of a customer in an array, a numpy array, to make the predict function work.
+# But we have to put it in a horizontal row, because the data that we trained on was also in horizontal format.
+# So, just have a list of list == [[kfkv,jfjvn,nafn,inefb]] -- Horizontal numpy array.
+# the first 0.0 and 0 are the dummy varibales created for FRANCE, while encoding the data using One Hot Encoding!
+# Because X_train was scaled, we need to scale this input as well, so use,---- sc.transform() ---
+
+
 new_prediction = (new_prediction > 0.5)
 
 # Making the Confusion Matrix
