@@ -79,12 +79,29 @@ from keras.preprocessing import image
 # to import image 
 
 test_image = image.load_img('dataset/single_prediction/cat_or_dog_1.jpg', target_size = (64, 64))
-#load image to do the processing on, image can be a dog or a cat
+#load image to do the processing on, image can be a dog or a cat 
 
 test_image = image.img_to_array(test_image)
+# to make the image have the third dimension for the color, becuase we trained on 64 x 64 x 3, and the test image is a coloured image.
+# hence, we need the thrid dimension on it.
+# will the image of two dimensions to a 3 dimension image, needed for color, i.e, 64 x 64 x 3.
+
 test_image = np.expand_dims(test_image, axis = 0)
+# need this step, because we need 4 dimensions instead of 3 to test the image. Just doing this to give to the predict method whta it expects, 
+# no reasoning, just do it.
+# this dimension actually corresponds to the batch  
+# because the predict() function expects a batch, even though there is a single image, it must be in a batch, hence need to create a dimension for the batch.
+# expand_dims is a numpy method, NOT a keras one.
+# Makes the image 4 dimensional - (1 x 64 x 64 x 3)
+
 result = classifier.predict(test_image)
+# gives the final prediction
+# gives the output as : [[1]]
+# how to know if that 1 corresponds to 1 or to a cat, class_indices used
+
 training_set.class_indices
+# output : {'cats': 0, 'dogs': 1}
+
 if result[0][0] == 1:
     prediction = 'dog'
 else:
