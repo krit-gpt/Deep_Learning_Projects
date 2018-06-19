@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>085 Improving and Tuning the RNN - Solution</title>
+</head>
+<body>
+<div class="asset-container">
+    <div class="asset-container__padding article-view">
+        <div class="w3c-default">
+            <p>Improving and Tuning the RNN - Solution</p>
+
+<p><br></p>
+
+<p>Please find in the zip folder at the bottom of this page the Solution of this Homework Challenge!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>This folder contains the codes (python files) and the plot results (png images) for each of the four models.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>Code explanations:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol><li>To add more timesteps, for example 20 timesteps, we need to create a 2D numpy array where each line corresponds to each time t, and for each line we have in columns the stock prices at times t-20, t-19, ..., t-2, and t-1. This 2D numpy array is X_train. Then we also create a 1D array with the outputs, which are the stock prices at time t. This 1D array is y_train. We do all this in the following part of the code:
+<pre class="prettyprint linenums"># Creating a data structure with 20 timesteps and t+1 output
+X_train = []
+y_train = []
+for i in range(20, 1258):
+    X_train.append(training_set_scaled[i-20:i, 0])
+    y_train.append(training_set_scaled[i, 0])
+X_train, y_train = np.array(X_train), np.array(y_train)</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li><li><p>Then we reshape X_train, still to get this 3D array format that is expected by the fit and predict methods:<br><br><code>X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))</code> <br><br>In this line of code, <code>X_train.shape[0]</code>  is the number of observations (lines) in X_train and <code>X_train.shape[1]</code> is the number of timesteps (columns) in X_train. Then the third argument is a 1 because we still have one feature, since indeed we only have one indicator (the Google Stock Price). We could use another indicator like the S&amp;P500 index or other indexes and in that case this third parameter would be 2.</p></li><li><p>For the models where we add more LSTM layers you'll notice this new parameter in the LSTM class:<br><br><code>return_sequences = True</code><br><br>This is a required parameter that must be set to True when stacking two LSTM layers. Basically that's simple, you just have to include <code>return_sequences = True</code> in your LSTM class if your next layer is an LSTM layer. However if your next layer is a fully connected layer (created with the Dense class), then make sure to remove <code>return_sequences = True</code> from the parameters of the LSTM class.</p></li></ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>Congratulations to those of you who got the same results as in the folder, and also to those of you who tried hard.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>Enjoy Deep Learning!</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>084 Improving and Tuning the RNN - Homework Challenge</title>
+</head>
+<body>
+<div class="asset-container">
+    <div class="asset-container__padding article-view">
+        <div class="w3c-default">
+            <h4>Improving and Tuning the RNN - Homework Challenge</h4>
+
+<p>As we saw in the previous section, the issue of our previous RNN model was in the one unit timestep. Because the timestep was 1, the model didn't learn anything useful, because it only took into account the input stock price at time t. Therefore, the model needs more past info to look back when predicting the stock price at time t+1. So instead of only looking at the stock price at time t, we want for example our model to look back at the stock prices at times t-20, t-19, ..., and t-1. In that last example the timestep is 20. And we still predict the stock price for the next day, that is here the stock price at time t. </p><p>Therefore the challenge now is to improve the model by increasing the timestep.</p><p>Besides we will also try to improve our model by adding more LSTM layers.</p><p>Hence, here are the Homework Instructions:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p><strong>Make four models:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol><li>Model 1 - 20 timesteps &amp; 1 LSTM layer</li><li>Model 2 - 20 timesteps &amp; 4 LSTM layers</li><li>Model 3 - 60 timesteps &amp; 1 LSTM layer</li><li>Model 4 - 60 timesteps &amp; 4 STM layers</li></ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p><strong>Plot your results (real stock price and predicted stock price of January 2017) on a same chart.</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>Optional: you can do some Parameter Tuning on these four models. Parameter Tuning for Regression is the same as Parameter Tuning for Classification which you learned in Part 1 - Artificial Neural Networks, only here for Regression you have to replace <code>scoring = 'accuracy'</code>  by <code>scoring = 'mse'</code> in the GridSearchCV class parameters.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>And eventually, feel free to create another architecture of the RNN model or even take a whole new approach of the problem if you think there is a better one, we'd be very happy to see your results in the Q&amp;A.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>Enjoy Deep Learning!</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
