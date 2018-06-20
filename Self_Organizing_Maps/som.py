@@ -44,6 +44,20 @@ X = sc.fit_transform(X)
 # Training the SOM
 # Minisom is the package for SOMs
 from minisom import MiniSom
+
+'''
+MiniSom 
+x,y = dimensions of the SOM, upto us, should not be small, because we want the outliers to be present prominently.
+Depends on the input customers. We have less customers, so 10 x 10 grid will do.
+
+input_len == No of inputs in the input data, dimensions of the input data == 15!
+
+sigma == radius of the neighbours.
+
+learning_rate - decides by how much the weights are updated, during each iteration.
+the higher the rate, the faster is the convergance.
+
+'''
 som = MiniSom(x = 10, y = 10, input_len = 15, sigma = 1.0, learning_rate = 0.5)
 som.random_weights_init(X)
 som.train_random(data = X, num_iteration = 100)
