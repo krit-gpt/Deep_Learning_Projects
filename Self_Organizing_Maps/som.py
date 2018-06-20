@@ -115,6 +115,30 @@ for i, x in enumerate(X):
 show()
 
 # Finding the frauds
+# Find the customers associated with the fraud nodes as represented by the SOM.
+# No inverse mapping function, so get all the mappings between the winning nodes to the customers.
+# mappings is a dictionary of all the nodes --> list of the customers associated with it, and the number of customers assoicated with the node.
+
 mappings = som.win_map(X)
+
+# (8,1) and (6,8) are the coordinates of the WHITE nodes -- got that after seeing the map
+# now, get a combined list of all the customers associated with them, concatenate along teh vertical axis, so axis = 0
 frauds = np.concatenate((mappings[(8,1)], mappings[(6,8)]), axis = 0)
+
+#reverse the transformation to get the original data.
 frauds = sc.inverse_transform(frauds)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
