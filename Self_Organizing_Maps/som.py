@@ -59,18 +59,46 @@ the higher the rate, the faster is the convergance.
 
 '''
 som = MiniSom(x = 10, y = 10, input_len = 15, sigma = 1.0, learning_rate = 0.5)
+# give random weights
 som.random_weights_init(X)
+
+# train the SOM, the number of iterations to train the data.
 som.train_random(data = X, num_iteration = 100)
 
-# Visualizing the results
+
+# Visualizing the results = from scratch.
 from pylab import bone, pcolor, colorbar, plot, show
+
+# bone() - window that will contain the map, white window without anything in it.
 bone()
+
+# pcolor() -- put the different winngin nodes on to the map, 
+# different colors for the different range values for the different inter-neuron distances
+# som.distance_map() gives all the different mean distances for all the winning nodes in a matrix, take its transpose -- .T
+# All colors correpsonding to the Mean - interneuron distances.
 pcolor(som.distance_map().T)
+
+#colorbar() - legend of all the colors, to tell what each color represents
+# Highest mean inter-neuron distances correspond to the white color, lowest -- black color.
+# Defaulters -- far from the general, because outliers.
+# winning nodes which have large MIDs -- outliers --frauds -- white nodes on the map
 colorbar()
+
+
+#markers -- to tell if the customers associated with each node fraud or not.
 markers = ['o', 's']
+
+# red - fraud, green - non fraud
 colors = ['r', 'g']
+
+
 for i, x in enumerate(X):
+	#for each customer, get its winning node, x - customer, w - winning node.
     w = som.winner(x)
+    # now place the colored marker for the winning node
+    # coordinates of the marker, palce the marker at the center of the square (square -- each node)
+    # w[0], w[1] -- coordinates of the winning node, the lower left corner of the square.
+    # y -- gives the output, from earlier! so use y[i] -- tells if fraud or not; 
     plot(w[0] + 0.5,
          w[1] + 0.5,
          markers[y[i]],
@@ -78,6 +106,12 @@ for i, x in enumerate(X):
          markerfacecolor = 'None',
          markersize = 10,
          markeredgewidth = 2)
+    # markeredgecolor -- marks the edge of the color
+    # markerfacecolor -- color the inside of the marker
+    # markersize -- how big the marker has to be
+    # markeredgewidth -- width of the marker.
+
+
 show()
 
 # Finding the frauds
